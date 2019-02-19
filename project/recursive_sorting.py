@@ -24,10 +24,19 @@ def merge( arrA, arrB ):
 ### recursive sorting function
 def merge_sort( arr ):
     if len( arr ) > 1:
-        left = merge_sort( arr[ 0 : len( arr ) / 2 ] )
-        right = merge_sort( arr[ len( arr ) / 2 : ] )
+        left = merge_sort( arr[ 0 : int(len( arr ) / 2) ] )
+        right = merge_sort( arr[ int(len( arr ) / 2) : ] )
+        print(left,right)
         arr = merge( left, right )   # merge() defined later
     return arr
+
+arr1 = [1, 5, 8, 4, 2, 9, 6, 0, 3, 7]
+#arr2 = []
+#arr3 = [0, 1, 2, 3, 4, 5]
+
+#print(merge_sort(arr1))
+#print(merge_sort(arr2))
+#print(merge_sort(arr3))
 
 
 # STRETCH: implement an in-place merge sort algorithm
@@ -43,10 +52,23 @@ def merge_sort_in_place(arr, l, r):
 
 
 # TO-DO: implement the Quick Sort function below USING RECURSION
-def quick_sort( arr, low, high ):
 
-    return arr
 
+def quick_sort( arr, high, low ):
+    if len(arr) < 2:
+        return arr
+    pivot = arr[0]
+    under = []
+    over = []
+    for i in range(1,len(arr)):
+        if arr[i] > pivot:
+            over.append(arr[i])
+        else:
+            under.append(arr[i])
+
+    return [*quick_sort(under,None,None), pivot, *quick_sort(over,None,None)]
+
+#print(quick_sort(arr1,0,0) )
 
 # STRETCH: implement the Timsort function below
 # hint: check out https://github.com/python/cpython/blob/master/Objects/listsort.txt
